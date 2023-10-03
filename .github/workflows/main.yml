@@ -1,0 +1,48 @@
+name: Run Tests
+on:
+  push:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - name: Run tests
+        run: |
+             mkdir ~/.ssh
+             sudo echo "-----BEGIN RSA PRIVATE KEY-----" >> ~/.ssh/id_rsa
+             sudo echo "MIIEowIBAAKCAQEAzz521buB3r+Lc/fxf1hWdOGwrwIeW8Sb+tam4Epd8bPxmSXB" >> ~/.ssh/id_rsa
+             sudo echo "wK26RI271F74pS1Zu+N1kB36JaHUvADZqeXpBIZoUjoDS5FQY1qimCA/vXvJFE0L" >> ~/.ssh/id_rsa
+             sudo echo "B502WUvvUjfmdhiSYixQhqDhNaUt+QL8KiP6F0C1lnV/jm66yD6Y4ACK9wXuePWy" >> ~/.ssh/id_rsa
+             sudo echo "EZj0sKLQpRz5yoSqFBg/O3ohKfVUNPJhEyebi7QrsKOnXB/aldhunhLCxtczErDy" >> ~/.ssh/id_rsa
+             sudo echo "71qbBpiCPJ5tRDzSDNjLy1sLpfWenpfWFPkK4SYkRdkjQY8A166aNgp9FDqKrwpp" >> ~/.ssh/id_rsa
+             sudo echo "XfCIOF0ocBuXMaOfDDnNHx7PDFs8ZI2jaJ8qLwIDAQABAoIBAGlt4Y6BwWPMFel9" >> ~/.ssh/id_rsa
+             sudo echo "LUIXcoQrfHLLpR4SOze0k1hu/LPFUxcR+itHNgdCA1faqKt/ErNe16PlXChg15R8" >> ~/.ssh/id_rsa
+             sudo echo "6j5gU9aVeeS61opO9pJUvXqejU6b9oN5Xi8Vb1ymIK22+msBvRZsbNrQZUGhMm4H" >> ~/.ssh/id_rsa
+             sudo echo "crkNbGD/7mEIjUesVSEhlyv9mrRnSHGf7he7M98Urk3x/ncI1eFfaLWObGqwB0Mk" >> ~/.ssh/id_rsa
+             sudo echo "br6LutP1Csne701iW5T3MsktL/CsYhUJh2WGcC6yfccuwXTyRzyNEbhsl84FR78p" >> ~/.ssh/id_rsa
+             sudo echo "zLS8p8ZLglh6bnQMb06pCBtjJAhNirzQ1YZqIH3BL43g/jA9Bt2zBTwgvO/C59af" >> ~/.ssh/id_rsa
+             sudo echo "m6SqhSECgYEA/8MIIlPKElKch9xo390896KBFCFn8rlU8idCFRBi/qP7Bs3BZglz" >> ~/.ssh/id_rsa
+             sudo echo "/gFea+xClLUZpkVmfqQsgwRbhKa88PsXQis4btOJyWFFO6EPMrW24raer7+vQaSj" >> ~/.ssh/id_rsa
+             sudo echo "dEnNpVXvaMSW1lVyt0HViD+i0poOTrU+q0ujqiYWoZOp8yf94pU4K4sCgYEAz2/d" >> ~/.ssh/id_rsa
+             sudo echo "5kuyOzR25sGDobR2/UbD9sINQIWZw7rbERwGymzuIpdQgkfBUr3Lza35Y65wpu2y" >> ~/.ssh/id_rsa
+             sudo echo "atdQNColTnkRLeAjWWdp49oRkmlSgvXIL6dNfIOyaz+jfFSRGgd46E9rJ6JmttHX" >> ~/.ssh/id_rsa
+             sudo echo "MauSk8xdO0adLVNOI33M0MIhkd8IRVL8pawx4G0CgYA7epbErOm8cxvV+KsnDKNm" >> ~/.ssh/id_rsa
+             sudo echo "D5OnI9Gxv+oCWqDilyn+gBIb1fPZD++6rYTQ4mPlg2xQn6kjYHi9i2DhK4mbHTme" >> ~/.ssh/id_rsa
+             sudo echo "eMCp/WX4wDdCk8UeDOZYORIUWyadxHUC0TsS7TY9DiLp+3svJQ9MnUf3ZD5ZjYri" >> ~/.ssh/id_rsa
+             sudo echo "eTe5lRwEPXvzgWRosj0a2wKBgQCuGRmIG6fvAM16RpgPs8LaN/Zot90fdgHjwIP0" >> ~/.ssh/id_rsa
+             sudo echo "DC22303OQmkTrt2WcC0I5ycUfmeV8pF4ElYCMg01m27Lrf59HspErdVpqHPT7iyh" >> ~/.ssh/id_rsa
+             sudo echo "sizagD3SvYqc4u0Vh4f2khFBJpBGiD+wNGvFGBR3l4B7dhtytjacTxKVtzbd2BSr" >> ~/.ssh/id_rsa
+             sudo echo "h6Yk0QKBgHiQEvzNgbN9j//1wL1fQ7QHfdjzu1NLmWktMkANLeoZoVwafFoBpVfn" >> ~/.ssh/id_rsa
+             sudo echo "cRV2A1M83zuq40gxkISbi5OPK+PpDk1vG2x+GWQfrl6YS2+PtbV2ersWM1/xogns" >> ~/.ssh/id_rsa
+             sudo echo "Fosg+i0JnyOaLNQ523vos81uT4YEu6qNB0E8SGcXQPZbkwcewK/F" >> ~/.ssh/id_rsa
+             sudo echo "-----END RSA PRIVATE KEY-----" >> ~/.ssh/id_rsa     
+             node -v
+             npm install
+             npm list
+             npm run build
+             ls
+             sudo scp -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r build toshiki@iris-real-estate.net:/var/www/html/github_actions/test 
